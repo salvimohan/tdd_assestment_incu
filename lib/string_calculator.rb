@@ -5,7 +5,11 @@ class StringCalculator
     def add(string_number = '')
       return 0 if string_number.empty?
 
-      string_number.to_i
+      numbers = string_number.split(',').map(&:to_i)
+      negatives = numbers.select(&:negative?)
+      raise "negative numbers not allowed #{negatives.join(', ')}" if negatives.any?
+
+      numbers.first if numbers.size == 1
     end
   end
 end
