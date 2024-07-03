@@ -15,5 +15,9 @@ RSpec.describe StringCalculator do
     it 'returns the number itself for a single number' do
       expect(klass.add("1")).to eq(1)
     end
+
+    it 'raises an error for negative numbers' do
+      expect { klass.add("-2") }.to raise_error(RuntimeError, "negative numbers not allowed -2")
+    end
   end
 end
