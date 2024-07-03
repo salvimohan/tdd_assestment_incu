@@ -31,5 +31,9 @@ RSpec.describe StringCalculator do
     it 'handles new lines between numbers' do
       expect(klass.add("1\n2,3")).to eq(6)
     end
+
+    it 'return invalid input for invalid string format' do
+      expect(klass.add("1,\n")).to eq("Invalid Input")
+    end
   end
 end
