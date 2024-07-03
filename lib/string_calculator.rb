@@ -5,15 +5,29 @@ class StringCalculator
     def add(string_number = '')
       return 0 if string_number.empty?
 
-      numbers = string_number.split(',')
-      negatives = numbers.map(&:to_i).select(&:negative?)
+      @string_number = string_number
+      validate_numbers
+    end
+
+    private
+
+    def validate_numbers
+      return 'Invalid Input' unless valid_input?
+
+      numbers = split_string(/,|\n/).map(&:to_i)
+      negatives = numbers.select(&:negative?)
       raise "negative numbers not allowed #{negatives.join(', ')}" if negatives.any?
 
-      valid_input = numbers.select { |num| num.eql?("\n") }
-      return 'Invalid Input' unless valid_input.empty?
+      numbers.sum
+    end
 
-      numbers = string_number.split(/,|\n/)
-      numbers.map(&:to_i).sum
+    def valid_input?
+      numbers = split_string(',')
+      numbers.select { |num| num.eql?("\n") }.empty?
+    end
+
+    def split_string(key)
+      @string_number.split(key)
     end
   end
 end
