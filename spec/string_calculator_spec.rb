@@ -27,5 +27,9 @@ RSpec.describe StringCalculator do
     it 'raises an error for negative numbers' do
       expect { klass.add("-2, 5") }.to raise_error(RuntimeError, "negative numbers not allowed -2")
     end
+
+    it 'handles new lines between numbers' do
+      expect(klass.add("1\n2,3")).to eq(6)
+    end
   end
 end
