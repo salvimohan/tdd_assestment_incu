@@ -11,5 +11,9 @@ RSpec.describe StringCalculator do
     it 'return 0 for blank string' do
       expect(klass.add("")).to eq(0)
     end
+
+    it 'returns the number itself for a single number' do
+      expect(klass.add("1")).to eq(1)
+    end
   end
 end
