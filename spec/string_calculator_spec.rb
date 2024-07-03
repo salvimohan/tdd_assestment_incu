@@ -19,5 +19,9 @@ RSpec.describe StringCalculator do
     it 'raises an error for negative numbers' do
       expect { klass.add("-2") }.to raise_error(RuntimeError, "negative numbers not allowed -2")
     end
+
+    it 'returns the sum of numbers for comma-separated numbers' do
+      expect(klass.add("1,5")).to eq(6)
+    end
   end
 end
