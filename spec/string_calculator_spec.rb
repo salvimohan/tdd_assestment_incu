@@ -35,5 +35,9 @@ RSpec.describe StringCalculator do
     it 'return invalid input for invalid string format' do
       expect(klass.add("1,\n")).to eq("Invalid Input")
     end
+
+    it 'supports custom delimiters' do
+      expect(klass.add("//;\n1;2")).to eq(3)
+    end
   end
 end
